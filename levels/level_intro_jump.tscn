@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsioisn6r31ku"]
+
+[ext_resource type="PackedScene" uid="uid://ccufvujthlsbv" path="res://prefabs/clock.tscn" id="1_6xmfu"]
+[ext_resource type="PackedScene" uid="uid://d1ai0sdh4dnbv" path="res://prefabs/player.tscn" id="2_olqtv"]
+[ext_resource type="PackedScene" uid="uid://bx5uh0pwe5que" path="res://prefabs/random_color_bg.tscn" id="3_ojlmb"]
+[ext_resource type="PackedScene" uid="uid://dvt0bbp3klwmf" path="res://prefabs/level_title.tscn" id="4_lm5qv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmpwu"]
+size = Vector2(1172, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jwea"]
+size = Vector2(398, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxqdp"]
+size = Vector2(46, 305)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Clock" parent="." instance=ExtResource("1_6xmfu")]
+offset_left = 84.0
+offset_top = 84.0
+offset_right = 124.0
+offset_bottom = 124.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Player" parent="." instance=ExtResource("2_olqtv")]
+position = Vector2(92, 467)
+
+[node name="Plank" type="StaticBody2D" parent="."]
+position = Vector2(-11, 492)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="Plank"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(9.56, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plank"]
+position = Vector2(586, 19.5)
+shape = SubResource("RectangleShape2D_jmpwu")
+
+[node name="Plank2" type="StaticBody2D" parent="."]
+position = Vector2(402, 456)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="Plank2"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(3.2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plank2"]
+position = Vector2(199, 19.5)
+shape = SubResource("RectangleShape2D_8jwea")
+
+[node name="Goal" type="StaticBody2D" parent="."]
+position = Vector2(1111, 482)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+position = Vector2(-13, -142.5)
+shape = SubResource("RectangleShape2D_jxqdp")
+
+[node name="Instructions" type="Label" parent="."]
+offset_left = 159.0
+offset_top = 251.0
+offset_right = 460.0
+offset_bottom = 303.0
+text = "You are constantly moving to the right.
+If you collide with something on your right,
+the level will reset.
+Press W or Up arrow to jump."
+
+[node name="LevelTitle" parent="." instance=ExtResource("4_lm5qv")]
+
+[node name="RandomColorBG" parent="." instance=ExtResource("3_ojlmb")]

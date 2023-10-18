@@ -1,0 +1,133 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5dscmwx8h1nh"]
+
+[ext_resource type="PackedScene" uid="uid://ccufvujthlsbv" path="res://prefabs/clock.tscn" id="1_fkw7e"]
+[ext_resource type="PackedScene" uid="uid://d1ai0sdh4dnbv" path="res://prefabs/player.tscn" id="2_f1iqd"]
+[ext_resource type="Script" path="res://prefabs/linear_clock_motion.gd" id="3_t7jfa"]
+[ext_resource type="PackedScene" uid="uid://bx5uh0pwe5que" path="res://prefabs/random_color_bg.tscn" id="4_1bwxp"]
+[ext_resource type="PackedScene" uid="uid://dvt0bbp3klwmf" path="res://prefabs/level_title.tscn" id="5_djmkc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wuu6f"]
+size = Vector2(333, 39.5794)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gycej"]
+size = Vector2(234.75, 41.1884)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arirv"]
+size = Vector2(235.749, 42.2181)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6m2ld"]
+size = Vector2(182, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxqdp"]
+size = Vector2(46, 305)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Clock" parent="." instance=ExtResource("1_fkw7e")]
+offset_left = 84.0
+offset_top = 84.0
+offset_right = 124.0
+offset_bottom = 124.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Player" parent="." instance=ExtResource("2_f1iqd")]
+position = Vector2(92, 467)
+
+[node name="Planks" type="Node" parent="."]
+
+[node name="StaticPlank1" type="StaticBody2D" parent="Planks"]
+position = Vector2(-11, 492)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="Planks/StaticPlank1"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(2.72, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/StaticPlank1"]
+position = Vector2(166.5, 19.2187)
+scale = Vector2(1.00107, 0.971147)
+shape = SubResource("RectangleShape2D_wuu6f")
+
+[node name="StaticPlank2" type="StaticBody2D" parent="Planks"]
+position = Vector2(504, 492)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="Planks/StaticPlank2"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(1.92, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/StaticPlank2"]
+position = Vector2(118.5, 20)
+scale = Vector2(1.00107, 0.971147)
+shape = SubResource("RectangleShape2D_gycej")
+
+[node name="StaticPlank3" type="StaticBody2D" parent="Planks"]
+position = Vector2(922, 492)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="Planks/StaticPlank3"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(1.92, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/StaticPlank3"]
+position = Vector2(118, 20.5)
+scale = Vector2(1.00107, 0.971147)
+shape = SubResource("RectangleShape2D_arirv")
+
+[node name="MovingPlank1" type="StaticBody2D" parent="Planks" node_paths=PackedStringArray("clockObject")]
+position = Vector2(322, 492)
+collision_mask = 3
+script = ExtResource("3_t7jfa")
+initialPosition = Vector2(322, 603)
+finalPosition = Vector2(322, 492)
+clockObject = NodePath("../../Clock")
+
+[node name="ColorRect" type="ColorRect" parent="Planks/MovingPlank1"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(1.48, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/MovingPlank1"]
+position = Vector2(91, 19.5)
+shape = SubResource("RectangleShape2D_6m2ld")
+
+[node name="MovingPlank2" type="StaticBody2D" parent="Planks" node_paths=PackedStringArray("clockObject")]
+position = Vector2(740, 492)
+collision_mask = 3
+script = ExtResource("3_t7jfa")
+initialPosition = Vector2(740, 492)
+finalPosition = Vector2(740, 603)
+clockObject = NodePath("../../Clock")
+
+[node name="ColorRect" type="ColorRect" parent="Planks/MovingPlank2"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(1.48, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/MovingPlank2"]
+position = Vector2(91, 19.5)
+shape = SubResource("RectangleShape2D_6m2ld")
+
+[node name="Goal" type="StaticBody2D" parent="."]
+position = Vector2(1111, 482)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+position = Vector2(-13, -142.5)
+shape = SubResource("RectangleShape2D_jxqdp")
+
+[node name="Instructions" type="Label" parent="."]
+offset_left = 159.0
+offset_top = 251.0
+offset_right = 460.0
+offset_bottom = 303.0
+text = "Press M to mute or unmute the sound.
+Press Escape to return to the main menu."
+
+[node name="LevelTitle" parent="." instance=ExtResource("5_djmkc")]
+
+[node name="RandomColorBG" parent="." instance=ExtResource("4_1bwxp")]

@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://c64uxcu7ldhjy"]
+
+[ext_resource type="Script" path="res://prefabs/about_menu.gd" id="1_lqsao"]
+
+[node name="AboutMenu" type="CanvasLayer"]
+script = ExtResource("1_lqsao")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -134.5
+offset_right = 200.0
+offset_bottom = 134.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="MenuTitle" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "About"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+text = "The Other 2D is a platformer/puzzle game where the roles of time and a space dimension are reversed. The player can travel through time at will, but they are forced through space at a constant rate.
+
+Credits:
+Programming and graphics by Miles Blumenau
+Font- Pixelify Sans, by Stefie Justprince
+Sound effects:
+	From various Freesound users
+	Death sound- by Rocotilos
+	Jump sound- by EFindlay
+	Key sound- by bluetshirt
+	Goal sound- by hollandm"
+
+[node name="CloseButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Close"
+
+[connection signal="pressed" from="VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

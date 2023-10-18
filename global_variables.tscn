@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctgmqexpm1nq1"]
+
+[ext_resource type="Script" path="res://global_variables.gd" id="1_823hr"]
+
+[node name="GlobalVariables" type="Node"]
+script = ExtResource("1_823hr")
+scenesList = ["res://main_menu.tscn", "res://levels/level_intro_jump.tscn", "res://levels/level_intro_time.tscn", "res://levels/level_time_back_and_forth.tscn", "res://levels/level_time_go_up.tscn", "res://levels/level_intro_enemy.tscn", "res://levels/level_up_down_walls.tscn", "res://levels/level_intro_key.tscn", "res://levels/level_enemy_key.tscn", "res://end_game_screen.tscn"]

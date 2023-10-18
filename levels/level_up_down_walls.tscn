@@ -1,0 +1,173 @@
+[gd_scene load_steps=9 format=3 uid="uid://cnwf871s3kyan"]
+
+[ext_resource type="PackedScene" uid="uid://ccufvujthlsbv" path="res://prefabs/clock.tscn" id="1_sgsof"]
+[ext_resource type="PackedScene" uid="uid://d1ai0sdh4dnbv" path="res://prefabs/player.tscn" id="2_dv0xc"]
+[ext_resource type="Script" path="res://prefabs/linear_clock_motion.gd" id="3_3l2hj"]
+[ext_resource type="PackedScene" uid="uid://dvt0bbp3klwmf" path="res://prefabs/level_title.tscn" id="3_4bt0l"]
+[ext_resource type="PackedScene" uid="uid://bx5uh0pwe5que" path="res://prefabs/random_color_bg.tscn" id="4_kj676"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmpwu"]
+size = Vector2(1172, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxqdp"]
+size = Vector2(46, 305)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hkhft"]
+size = Vector2(47, 436)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Clock" parent="." instance=ExtResource("1_sgsof")]
+offset_left = 84.0
+offset_top = 84.0
+offset_right = 124.0
+offset_bottom = 124.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Player" parent="." instance=ExtResource("2_dv0xc")]
+position = Vector2(92, 467)
+
+[node name="Plank" type="StaticBody2D" parent="."]
+position = Vector2(-11, 492)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="Plank"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(9.56, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plank"]
+position = Vector2(586, 19.5)
+shape = SubResource("RectangleShape2D_jmpwu")
+
+[node name="Goal" type="StaticBody2D" parent="."]
+position = Vector2(1111, 482)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+position = Vector2(-13, -142.5)
+shape = SubResource("RectangleShape2D_jxqdp")
+
+[node name="WallsA" type="StaticBody2D" parent="." node_paths=PackedStringArray("clockObject")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_3l2hj")
+finalPosition = Vector2(0, -80)
+clockObject = NodePath("../Clock")
+
+[node name="Wall1" type="StaticBody2D" parent="WallsA"]
+position = Vector2(229, 52)
+collision_layer = 4
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="WallsA/Wall1"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(0.400001, 10.88)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallsA/Wall1"]
+position = Vector2(23.5, 218)
+shape = SubResource("RectangleShape2D_hkhft")
+
+[node name="Wall2" type="StaticBody2D" parent="WallsA"]
+position = Vector2(477, 52)
+collision_layer = 4
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="WallsA/Wall2"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(0.400001, 10.88)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallsA/Wall2"]
+position = Vector2(23.5, 218)
+shape = SubResource("RectangleShape2D_hkhft")
+
+[node name="Wall3" type="StaticBody2D" parent="WallsA"]
+position = Vector2(726, 52)
+collision_layer = 4
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="WallsA/Wall3"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(0.400001, 10.88)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallsA/Wall3"]
+position = Vector2(23.5, 218)
+shape = SubResource("RectangleShape2D_hkhft")
+
+[node name="WallsB" type="StaticBody2D" parent="." node_paths=PackedStringArray("clockObject")]
+position = Vector2(122, -80)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_3l2hj")
+initialPosition = Vector2(122, -80)
+finalPosition = Vector2(122, 0)
+clockObject = NodePath("../Clock")
+
+[node name="Wall1" type="StaticBody2D" parent="WallsB"]
+position = Vector2(229, 52)
+collision_layer = 4
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="WallsB/Wall1"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(0.400001, 10.88)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallsB/Wall1"]
+position = Vector2(23.5, 218)
+shape = SubResource("RectangleShape2D_hkhft")
+
+[node name="Wall2" type="StaticBody2D" parent="WallsB"]
+position = Vector2(477, 52)
+collision_layer = 4
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="WallsB/Wall2"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(0.400001, 10.88)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallsB/Wall2"]
+position = Vector2(23.5, 218)
+shape = SubResource("RectangleShape2D_hkhft")
+
+[node name="Wall3" type="StaticBody2D" parent="WallsB"]
+position = Vector2(726, 52)
+collision_layer = 4
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="WallsB/Wall3"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(0.400001, 10.88)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallsB/Wall3"]
+position = Vector2(23.5, 218)
+shape = SubResource("RectangleShape2D_hkhft")
+
+[node name="Instructions" type="Label" parent="."]
+visible = false
+offset_left = 159.0
+offset_top = 251.0
+offset_right = 460.0
+offset_bottom = 303.0
+text = "You get this for level 6.
+Lucky you!
+So simple!"
+
+[node name="LevelTitle" parent="." instance=ExtResource("3_4bt0l")]
+
+[node name="ColorRect" type="ColorRect" parent="LevelTitle"]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 23.0
+offset_right = 209.0
+offset_bottom = 63.0
+scale = Vector2(2.48, 1.4)
+color = Color(0.27451, 0.27451, 0.27451, 0.854902)
+
+[node name="RandomColorBG" parent="." instance=ExtResource("4_kj676")]

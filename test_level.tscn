@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://c54o3gn6cx3fw"]
+
+[ext_resource type="PackedScene" uid="uid://d1ai0sdh4dnbv" path="res://prefabs/player.tscn" id="1_2n300"]
+[ext_resource type="PackedScene" uid="uid://ccufvujthlsbv" path="res://prefabs/clock.tscn" id="2_gkpdi"]
+[ext_resource type="PackedScene" uid="uid://dhjg5arotwamw" path="res://prefabs/enemy_linear.tscn" id="3_tcabn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmpwu"]
+size = Vector2(680, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxqdp"]
+size = Vector2(46, 305)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Clock" parent="." instance=ExtResource("2_gkpdi")]
+offset_left = 84.0
+offset_top = 84.0
+offset_right = 124.0
+offset_bottom = 124.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Player" parent="." instance=ExtResource("1_2n300")]
+position = Vector2(64, 372)
+
+[node name="Plank" type="StaticBody2D" parent="."]
+position = Vector2(33, 492)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="Plank"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(5.52, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plank"]
+position = Vector2(340, 19.5)
+shape = SubResource("RectangleShape2D_jmpwu")
+
+[node name="Goal" type="StaticBody2D" parent="."]
+position = Vector2(641, 482)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+position = Vector2(-13, -142.5)
+shape = SubResource("RectangleShape2D_jxqdp")
+
+[node name="EnemyLinear" parent="." node_paths=PackedStringArray("clockObject") instance=ExtResource("3_tcabn")]
+initialPosition = Vector2(-200, 463)
+finalPosition = Vector2(300, 463)
+clockObject = NodePath("../Clock")

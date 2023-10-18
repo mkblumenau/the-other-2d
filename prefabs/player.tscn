@@ -1,0 +1,117 @@
+[gd_scene load_steps=13 format=3 uid="uid://d1ai0sdh4dnbv"]
+
+[ext_resource type="Script" path="res://prefabs/player.gd" id="1_paov1"]
+[ext_resource type="AudioStream" uid="uid://b683gweyl65vu" path="res://assets/sfx/275733__rocotilos__toink-8bit.wav" id="2_ojhmm"]
+[ext_resource type="AudioStream" uid="uid://csachhci4okq8" path="res://assets/sfx/570243__bluetshirt__point-in-space.ogg" id="2_pb3v2"]
+[ext_resource type="AudioStream" uid="uid://bx7whuadoixr5" path="res://assets/sfx/663831__efindlay__springy-jump.wav" id="3_ie7xc"]
+[ext_resource type="AudioStream" uid="uid://loxace1n2nyf" path="res://assets/sfx/691779__hollandm__b4-soft-kalimba.wav" id="4_61sfl"]
+[ext_resource type="Texture2D" uid="uid://bfx7jbphccy24" path="res://assets/sprites/player_frame1.png" id="6_vts85"]
+[ext_resource type="Texture2D" uid="uid://bfgt7nutfm7rb" path="res://assets/sprites/player_downframe.png" id="7_0apl1"]
+[ext_resource type="Texture2D" uid="uid://8f4jqodpge7l" path="res://assets/sprites/player_upframe.png" id="8_jjlrt"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a0vfi"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_et8xa"]
+size = Vector2(18, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ha0qd"]
+size = Vector2(40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wkxbl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_vts85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0apl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vts85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jjlrt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vts85")
+}],
+"loop": true,
+"name": &"jump_full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_0apl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vts85")
+}],
+"loop": false,
+"name": &"jump_simple",
+"speed": 5.0
+}]
+
+[node name="Player" type="RigidBody2D"]
+light_mask = 4
+visibility_layer = 4
+collision_layer = 2
+collision_mask = 5
+physics_material_override = SubResource("PhysicsMaterial_a0vfi")
+max_contacts_reported = 50
+contact_monitor = true
+can_sleep = false
+lock_rotation = true
+linear_velocity = Vector2(100, 0)
+linear_damp_mode = 1
+script = ExtResource("1_paov1")
+jumpStrength = 500
+jumpSound = ExtResource("3_ie7xc")
+deathSound = ExtResource("2_ojhmm")
+goalSound = ExtResource("4_61sfl")
+keySound = ExtResource("2_pb3v2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+light_mask = 4
+visibility_layer = 4
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_et8xa")
+
+[node name="CollisionShape2DOld" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_ha0qd")
+disabled = true
+
+[node name="LevelResetTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="KeyCheckArea" type="Area2D" parent="."]
+collision_mask = 48
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="KeyCheckArea"]
+shape = SubResource("RectangleShape2D_et8xa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wkxbl")
+animation = &"jump_simple"
+frame = 1
+frame_progress = 1.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="KeyCheckArea" to="." method="_on_key_check_area_body_entered"]

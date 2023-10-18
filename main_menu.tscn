@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0gnv5u4d885c"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_4ucxo"]
+[ext_resource type="PackedScene" uid="uid://c64uxcu7ldhjy" path="res://prefabs/about_menu.tscn" id="2_5knyi"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ucxo")
+
+[node name="MenuCanvas" type="CanvasLayer" parent="."]
+
+[node name="GameTitleLabel" type="Label" parent="MenuCanvas"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.5
+offset_top = 37.0
+offset_right = 50.5
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "The Other 2D"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuCanvas"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -83.5
+offset_right = 53.0
+offset_bottom = 83.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="AboutButton" type="Button" parent="MenuCanvas/VBoxContainer"]
+layout_mode = 2
+text = "About"
+
+[node name="ToggleSound" type="CheckBox" parent="MenuCanvas/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Sound on"
+alignment = 1
+
+[node name="LevelSelectHBox" type="HBoxContainer" parent="MenuCanvas/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SelectLevelLabel" type="Label" parent="MenuCanvas/VBoxContainer/LevelSelectHBox"]
+layout_mode = 2
+text = "Select level"
+
+[node name="SelectLevel" type="OptionButton" parent="MenuCanvas/VBoxContainer/LevelSelectHBox"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MenuCanvas/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="AboutMenu" parent="." instance=ExtResource("2_5knyi")]
+visible = false
+
+[connection signal="pressed" from="MenuCanvas/VBoxContainer/AboutButton" to="." method="_on_about_button_pressed"]
+[connection signal="toggled" from="MenuCanvas/VBoxContainer/ToggleSound" to="." method="_on_toggle_sound_toggled"]
+[connection signal="pressed" from="MenuCanvas/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="menu_closed" from="AboutMenu" to="." method="_on_about_menu_menu_closed"]

@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://dkyibyog8maxx"]
+
+[ext_resource type="PackedScene" uid="uid://ccufvujthlsbv" path="res://prefabs/clock.tscn" id="1_usuxv"]
+[ext_resource type="PackedScene" uid="uid://d1ai0sdh4dnbv" path="res://prefabs/player.tscn" id="2_2wr54"]
+[ext_resource type="Script" path="res://prefabs/linear_clock_motion.gd" id="3_43a3g"]
+[ext_resource type="PackedScene" uid="uid://bx5uh0pwe5que" path="res://prefabs/random_color_bg.tscn" id="4_027nn"]
+[ext_resource type="PackedScene" uid="uid://dvt0bbp3klwmf" path="res://prefabs/level_title.tscn" id="5_uuwca"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmpwu"]
+size = Vector2(492, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6m2ld"]
+size = Vector2(182, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxqdp"]
+size = Vector2(46, 305)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Clock" parent="." instance=ExtResource("1_usuxv")]
+offset_left = 84.0
+offset_top = 84.0
+offset_right = 124.0
+offset_bottom = 124.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Player" parent="." instance=ExtResource("2_2wr54")]
+position = Vector2(92, 467)
+
+[node name="Planks" type="Node" parent="."]
+
+[node name="StaticPlank1" type="StaticBody2D" parent="Planks"]
+position = Vector2(-11, 492)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="Planks/StaticPlank1"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(4, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/StaticPlank1"]
+position = Vector2(246, 19.5)
+shape = SubResource("RectangleShape2D_jmpwu")
+
+[node name="MovingPlank" type="StaticBody2D" parent="Planks" node_paths=PackedStringArray("clockObject")]
+position = Vector2(481, 492)
+collision_mask = 3
+script = ExtResource("3_43a3g")
+initialPosition = Vector2(481, 603)
+finalPosition = Vector2(481, 492)
+clockObject = NodePath("../../Clock")
+
+[node name="ColorRect" type="ColorRect" parent="Planks/MovingPlank"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(1.48, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/MovingPlank"]
+position = Vector2(91, 19.5)
+shape = SubResource("RectangleShape2D_6m2ld")
+
+[node name="StaticPlank2" type="StaticBody2D" parent="Planks"]
+position = Vector2(660, 492)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="Planks/StaticPlank2"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(4, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/StaticPlank2"]
+position = Vector2(246, 19.5)
+shape = SubResource("RectangleShape2D_jmpwu")
+
+[node name="Goal" type="StaticBody2D" parent="."]
+position = Vector2(1111, 482)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+position = Vector2(-13, -142.5)
+shape = SubResource("RectangleShape2D_jxqdp")
+
+[node name="Instructions" type="Label" parent="."]
+offset_left = 159.0
+offset_top = 251.0
+offset_right = 460.0
+offset_bottom = 303.0
+text = "You can move through time.
+A/Left arrow: Rewind time
+D/Right arrow: Move ahead in time"
+
+[node name="LevelTitle" parent="." instance=ExtResource("5_uuwca")]
+
+[node name="RandomColorBG" parent="." instance=ExtResource("4_027nn")]

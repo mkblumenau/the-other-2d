@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhjg5arotwamw"]
+
+[ext_resource type="Script" path="res://prefabs/linear_clock_motion.gd" id="1_m2kfj"]
+[ext_resource type="Texture2D" uid="uid://b8x2e7exjsyuw" path="res://assets/sprites/enemy.png" id="2_rtfjq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_soggq"]
+size = Vector2(39, 41)
+
+[node name="EnemyLinear" type="StaticBody2D"]
+light_mask = 4
+visibility_layer = 4
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_m2kfj")
+
+[node name="PolygonSpriteOld" type="Polygon2D" parent="."]
+visible = false
+light_mask = 4
+visibility_layer = 4
+position = Vector2(-21, -31)
+scale = Vector2(0.676471, 1)
+polygon = PackedVector2Array(-2, 53, 32, 0, 66, 53)
+
+[node name="CollisionShapeOld" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_soggq")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rtfjq")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(20, 0, 0, -20, -20, 0, -10, 10, -10, 20, 10, 20, 10, 10)

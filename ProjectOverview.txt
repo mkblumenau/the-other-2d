@@ -1,0 +1,115 @@
+The Other 2D- project overview and plans
+
+Scenes
+	global_variables
+		This is autoloaded.
+		It contains a list of every scene, including the main menu and the scene for beating the game.
+		It has functions to change between these scenes.
+		Call them within a menu or level scene.
+	main_menu
+		This has a label, a level selection menu, and a start button.
+	Levels
+		test_level is the only one so far.
+		Make sure each new level you add is added to the list in global_variables.
+		Each level should include these prefabs:
+			clock
+			level_title
+			random_color_bg
+			player
+			enemy_linear (if used)
+			Some planks
+				Not a prefab, but a StaticBody2D with a ColorRect and a CollisionShape2D
+				See test_level
+		Make sure everything in the level is on the right layer.
+	end_game_screen
+		This is the screen that will show once you finish the game.
+		It has a button to return to the main menu.
+	
+Prefabs (technically just scenes):
+	player
+		The player-character. Moves to the right at a constant rate and can jump.
+		Sound effects are also processed by this.
+	enemy_linear
+		This is used for enemies that move along a linear path.
+		It can also be used for moving platforms, as long as you change the sprite,
+		collision mask, and what layer it's on.
+		Make sure to go into Inspector and add the clock to the Clock field.
+	clock
+		This checks for the time controls and displays them in the form of a UI clock face.
+	random_color_bg
+		This creates a rectangle in the background that's a random color.
+		This color is in HSL form where only the H is random,
+		which ensures that you can still read the text.
+	level_title
+		Displays the number of the level, taken from global_variables.
+	key
+		This has no scripting: it's just a StaticBody2D on the key layer.
+	about_menu
+		This is the about menu.
+		It's used in main_menu.
+	
+Scripts
+	main_menu, end_game_screen
+		These just control the buttons on those menus.
+		They check for global_variables and use that for scene changes.
+	global_variables
+		See the global_variables scene for a description.
+	clock
+		Handles time controls and displaying the time.
+		This also handles other controls, such as resetting the level and muting.
+	player
+		Handles physics that move the player, as well as the jump controls.
+		This also handles the player's collisions.
+	linear_clock_motion
+		Used on enemy_linear to move it along a line according to the clock.
+		
+Other:
+	To change the font, go to Project settings > GUI > Themes.
+		
+Features to maybe add:
+	Color the moving planks differently
+	Add a clickable button in the levels to return to main menu
+	Add a soundtrack
+	Add more levels
+	Find a way to make the About menu scrollable by keyboard
+	Option: Basic sprite style
+		Players can choose in the menu to go back to the basic polygon sprites for more contrast
+	Use this to improve collision detection
+		https://www.reddit.com/r/godot/comments/n3w7kc/rigidbodys_collision_direction_3d/?rdt=58956
+		Or this: https://www.reddit.com/r/godot/comments/6m0v84/how_to_find_the_collision_point_for_a_rigid_body/
+		
+Collision layers:
+	1. scene
+	2. player
+	3. enemy
+	4. goal
+	5. key
+	6. gate
+	
+Sources for resources
+	Fonts
+		From Google Fonts (all OFL)
+			DotGothic16
+				From Google Fonts, designed by Fontworks Inc.
+			Pixelify Sans
+				From Google Fonts, designed by Stefie Justprince
+	Sounds
+		From Freesound (all Creative Commons 0)
+			PLINK
+				by nickgoa
+				https://freesound.org/people/nickgoa/sounds/186845/
+			B4 soft- kalimba
+				by hollandm
+				https://freesound.org/people/hollandm/sounds/691779/
+			point-in-space
+				by bluetshirt
+				https://freesound.org/people/bluetshirt/sounds/570243/
+			Springy jump
+				by EFindlay
+				https://freesound.org/people/EFindlay/sounds/663831/
+			Game jump Sound
+				by steel2008
+				https://freesound.org/people/steel2008/sounds/231280/
+			Toink 8bit
+				by Rocotilos
+				https://freesound.org/people/Rocotilos/sounds/275733/

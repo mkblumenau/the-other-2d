@@ -1,0 +1,139 @@
+[gd_scene load_steps=12 format=3 uid="uid://ctqt53w6od2iw"]
+
+[ext_resource type="PackedScene" uid="uid://ccufvujthlsbv" path="res://prefabs/clock.tscn" id="1_qgk8i"]
+[ext_resource type="PackedScene" uid="uid://d1ai0sdh4dnbv" path="res://prefabs/player.tscn" id="2_st270"]
+[ext_resource type="Script" path="res://prefabs/linear_clock_motion.gd" id="3_teit3"]
+[ext_resource type="PackedScene" uid="uid://dvt0bbp3klwmf" path="res://prefabs/level_title.tscn" id="4_c5pe8"]
+[ext_resource type="PackedScene" uid="uid://bx5uh0pwe5que" path="res://prefabs/random_color_bg.tscn" id="5_7vtex"]
+[ext_resource type="PackedScene" uid="uid://dhjg5arotwamw" path="res://prefabs/enemy_linear.tscn" id="6_eirg2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65lqk"]
+size = Vector2(240.5, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrust"]
+size = Vector2(614, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ua2nw"]
+size = Vector2(298, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6m2ld"]
+size = Vector2(182, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxqdp"]
+size = Vector2(46, 506)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Clock" parent="." instance=ExtResource("1_qgk8i")]
+offset_left = 84.0
+offset_top = 84.0
+offset_right = 124.0
+offset_bottom = 124.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Player" parent="." instance=ExtResource("2_st270")]
+position = Vector2(34, 467)
+
+[node name="Planks" type="Node" parent="."]
+
+[node name="StaticPlank1" type="StaticBody2D" parent="Planks"]
+position = Vector2(-54, 492)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="Planks/StaticPlank1"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(1.96, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/StaticPlank1"]
+position = Vector2(119.75, 19.5)
+shape = SubResource("RectangleShape2D_65lqk")
+
+[node name="StaticPlank2" type="StaticBody2D" parent="Planks"]
+position = Vector2(369, 492)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="Planks/StaticPlank2"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(5, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/StaticPlank2"]
+position = Vector2(308, 19.5)
+shape = SubResource("RectangleShape2D_hrust")
+
+[node name="FloatingStaticPlank" type="StaticBody2D" parent="Planks"]
+position = Vector2(474, 399)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="Planks/FloatingStaticPlank"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(2.44, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/FloatingStaticPlank"]
+position = Vector2(149, 19.5)
+shape = SubResource("RectangleShape2D_ua2nw")
+
+[node name="MovingPlank1" type="StaticBody2D" parent="Planks" node_paths=PackedStringArray("clockObject")]
+position = Vector2(187, 492)
+collision_mask = 3
+script = ExtResource("3_teit3")
+initialPosition = Vector2(187, 592)
+finalPosition = Vector2(187, 492)
+clockObject = NodePath("../../Clock")
+
+[node name="ColorRect" type="ColorRect" parent="Planks/MovingPlank1"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(1.48, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/MovingPlank1"]
+position = Vector2(91, 19.5)
+shape = SubResource("RectangleShape2D_6m2ld")
+
+[node name="MovingPlank2" type="StaticBody2D" parent="Planks" node_paths=PackedStringArray("clockObject")]
+position = Vector2(984, 492)
+collision_mask = 3
+script = ExtResource("3_teit3")
+initialPosition = Vector2(984, 792)
+finalPosition = Vector2(984, 492)
+clockObject = NodePath("../../Clock")
+
+[node name="ColorRect" type="ColorRect" parent="Planks/MovingPlank2"]
+offset_right = 123.0
+offset_bottom = 40.0
+scale = Vector2(1.48, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/MovingPlank2"]
+position = Vector2(91, 19.5)
+shape = SubResource("RectangleShape2D_6m2ld")
+
+[node name="Goal" type="StaticBody2D" parent="."]
+position = Vector2(1111, 482)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+position = Vector2(-13, -243)
+shape = SubResource("RectangleShape2D_jxqdp")
+
+[node name="Instructions" type="Label" parent="."]
+offset_left = 159.0
+offset_top = 251.0
+offset_right = 460.0
+offset_bottom = 303.0
+text = "Enemies also move through time.
+When you collide with one in any direction,
+the level resets."
+
+[node name="LevelTitle" parent="." instance=ExtResource("4_c5pe8")]
+
+[node name="RandomColorBG" parent="." instance=ExtResource("5_7vtex")]
+
+[node name="EnemyLinear" parent="." node_paths=PackedStringArray("clockObject") instance=ExtResource("6_eirg2")]
+position = Vector2(826, 470)
+initialPosition = Vector2(726, 470)
+finalPosition = Vector2(826, 470)
+clockObject = NodePath("../Clock")

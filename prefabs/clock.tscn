@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccufvujthlsbv"]
+
+[ext_resource type="Script" path="res://prefabs/clock.gd" id="1_b2676"]
+[ext_resource type="Texture2D" uid="uid://dlddqvllbt6r6" path="res://assets/sprites/clock/face.png" id="2_jpvhk"]
+[ext_resource type="Texture2D" uid="uid://oqndhqpal5ao" path="res://assets/sprites/clock/arrow.png" id="3_6plis"]
+
+[node name="Clock" type="Control"]
+light_mask = 4
+visibility_layer = 4
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_b2676")
+speed = 0.6
+
+[node name="ClockFace" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ClockFace"]
+light_mask = 4
+visibility_layer = 4
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_jpvhk")
+
+[node name="ClockHand" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ClockHand"]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(0, -42)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_6plis")

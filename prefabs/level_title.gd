@@ -20,7 +20,7 @@ func _process(delta):
 func textToDisplay():
 	var ttd = "Level " + str(global_variables.currentScene)
 	ttd += "\nSound "
-	if global_variables.soundOn:
+	if global_variables.soundOn():
 		ttd += "on"
 	else:
 		ttd += "off"

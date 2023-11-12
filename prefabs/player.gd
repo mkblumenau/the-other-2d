@@ -142,9 +142,8 @@ func nextLevelAfterCollision():
 
 
 func playSound(source):
-	if global_variables.soundOn:
-		$AudioStreamPlayer.set_stream(source)
-		$AudioStreamPlayer.play()
+	$AudioStreamPlayer.set_stream(source)
+	$AudioStreamPlayer.play()
 
 
 func getKey():

@@ -100,6 +100,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [node name="KeyCheckArea" type="Area2D" parent="."]
 collision_mask = 48

@@ -7,7 +7,7 @@ var select_level
 func _ready():
 	global_variables = get_node("/root/GlobalVariables")
 	select_level = get_node("MenuCanvas/VBoxContainer/LevelSelectHBox/SelectLevel")
-	$MenuCanvas/VBoxContainer/ToggleSound.button_pressed = global_variables.soundOn
+	$MenuCanvas/VBoxContainer/ToggleSound.button_pressed = global_variables.soundOn()
 	
 	# Add all the levels to the dropdown.
 	for i in range(1, global_variables.scenesList.size() - 1):

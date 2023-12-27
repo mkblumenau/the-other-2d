@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmmaud37qq7fd"]
+[gd_scene load_steps=12 format=3 uid="uid://cmmaud37qq7fd"]
 
 [ext_resource type="PackedScene" uid="uid://ccufvujthlsbv" path="res://prefabs/clock.tscn" id="1_yq36k"]
 [ext_resource type="PackedScene" uid="uid://d1ai0sdh4dnbv" path="res://prefabs/player.tscn" id="2_hdkit"]
+[ext_resource type="PackedScene" uid="uid://b6xnhyqgfqoe3" path="res://static_plank.tscn" id="3_pmg72"]
 [ext_resource type="PackedScene" uid="uid://dvt0bbp3klwmf" path="res://prefabs/level_title.tscn" id="4_nfwyw"]
 [ext_resource type="PackedScene" uid="uid://bx5uh0pwe5que" path="res://prefabs/random_color_bg.tscn" id="5_lyxxt"]
 [ext_resource type="PackedScene" uid="uid://cryute3adjp2q" path="res://prefabs/key.tscn" id="6_1ro1u"]
 [ext_resource type="PackedScene" uid="uid://dhjg5arotwamw" path="res://prefabs/enemy_linear.tscn" id="6_48f5t"]
 [ext_resource type="Texture2D" uid="uid://8cw7if4jdc37" path="res://assets/sprites/padlock.png" id="6_whbb5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmpwu"]
-size = Vector2(1223, 39)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6yn8o"]
+size = Vector2(1223, 39.5794)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxqdp"]
 size = Vector2(46, 305)
@@ -31,18 +32,16 @@ position = Vector2(92, 467)
 
 [node name="Planks" type="Node2D" parent="."]
 
-[node name="StaticPlank1" type="StaticBody2D" parent="Planks"]
-position = Vector2(-11, 492)
-collision_mask = 3
+[node name="StaticPlank2" parent="Planks" instance=ExtResource("3_pmg72")]
+position = Vector2(9, 511)
 
-[node name="ColorRect" type="ColorRect" parent="Planks/StaticPlank1"]
-offset_right = 123.0
-offset_bottom = 40.0
-scale = Vector2(9.92, 1)
+[node name="NinePatchRect2" parent="Planks/StaticPlank2" index="1"]
+offset_left = -8.0
+offset_right = 1213.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/StaticPlank1"]
-position = Vector2(611.5, 19.5)
-shape = SubResource("RectangleShape2D_jmpwu")
+[node name="CollisionShape2D" parent="Planks/StaticPlank2" index="2"]
+position = Vector2(602.5, 0)
+shape = SubResource("RectangleShape2D_6yn8o")
 
 [node name="Goal" type="StaticBody2D" parent="."]
 position = Vector2(1111, 482)
@@ -91,3 +90,5 @@ position = Vector2(350, 465)
 initialPosition = Vector2(392, 465)
 finalPosition = Vector2(320, 465)
 clockObject = NodePath("../Clock")
+
+[editable path="Planks/StaticPlank2"]

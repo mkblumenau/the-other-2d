@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsioisn6r31ku"]
+[gd_scene load_steps=9 format=3 uid="uid://dsioisn6r31ku"]
 
 [ext_resource type="PackedScene" uid="uid://ccufvujthlsbv" path="res://prefabs/clock.tscn" id="1_6xmfu"]
 [ext_resource type="PackedScene" uid="uid://d1ai0sdh4dnbv" path="res://prefabs/player.tscn" id="2_olqtv"]
+[ext_resource type="Texture2D" uid="uid://dwgcvyniq1f6x" path="res://assets/ground/ground_texture_long_6.png" id="3_jv1v0"]
 [ext_resource type="PackedScene" uid="uid://bx5uh0pwe5que" path="res://prefabs/random_color_bg.tscn" id="3_ojlmb"]
 [ext_resource type="PackedScene" uid="uid://dvt0bbp3klwmf" path="res://prefabs/level_title.tscn" id="4_lm5qv"]
 
@@ -31,6 +32,7 @@ position = Vector2(-11, 492)
 collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="Plank"]
+visible = false
 offset_right = 123.0
 offset_bottom = 40.0
 scale = Vector2(9.56, 1)
@@ -39,11 +41,20 @@ scale = Vector2(9.56, 1)
 position = Vector2(586, 19.5)
 shape = SubResource("RectangleShape2D_jmpwu")
 
+[node name="NinePatchRect" type="NinePatchRect" parent="Plank"]
+offset_right = 1226.0
+offset_bottom = 40.0
+texture = ExtResource("3_jv1v0")
+patch_margin_top = 30
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
 [node name="Plank2" type="StaticBody2D" parent="."]
 position = Vector2(402, 456)
 collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="Plank2"]
+visible = false
 offset_right = 123.0
 offset_bottom = 40.0
 scale = Vector2(3.2, 1)
@@ -51,6 +62,14 @@ scale = Vector2(3.2, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plank2"]
 position = Vector2(199, 19.5)
 shape = SubResource("RectangleShape2D_8jwea")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Plank2"]
+offset_right = 397.0
+offset_bottom = 76.0
+texture = ExtResource("3_jv1v0")
+patch_margin_top = 30
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="Goal" type="StaticBody2D" parent="."]
 position = Vector2(1111, 482)

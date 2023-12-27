@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c54o3gn6cx3fw"]
+[gd_scene load_steps=7 format=3 uid="uid://c54o3gn6cx3fw"]
 
 [ext_resource type="PackedScene" uid="uid://d1ai0sdh4dnbv" path="res://prefabs/player.tscn" id="1_2n300"]
 [ext_resource type="PackedScene" uid="uid://ccufvujthlsbv" path="res://prefabs/clock.tscn" id="2_gkpdi"]
 [ext_resource type="PackedScene" uid="uid://dhjg5arotwamw" path="res://prefabs/enemy_linear.tscn" id="3_tcabn"]
+[ext_resource type="Texture2D" uid="uid://dwgcvyniq1f6x" path="res://assets/ground/ground_texture_long_6.png" id="3_u5mms"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmpwu"]
 size = Vector2(680, 39)
@@ -27,6 +28,7 @@ position = Vector2(33, 492)
 collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="Plank"]
+visible = false
 offset_right = 123.0
 offset_bottom = 40.0
 scale = Vector2(5.52, 1)
@@ -34,6 +36,14 @@ scale = Vector2(5.52, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plank"]
 position = Vector2(340, 19.5)
 shape = SubResource("RectangleShape2D_jmpwu")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="Plank"]
+offset_right = 679.0
+offset_bottom = 40.0
+texture = ExtResource("3_u5mms")
+region_rect = Rect2(0, 0, 90, 45)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="Goal" type="StaticBody2D" parent="."]
 position = Vector2(641, 482)

@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdkax1fkmkm76"]
+[gd_scene load_steps=11 format=3 uid="uid://cdkax1fkmkm76"]
 
 [ext_resource type="PackedScene" uid="uid://ccufvujthlsbv" path="res://prefabs/clock.tscn" id="1_aqwhb"]
 [ext_resource type="PackedScene" uid="uid://d1ai0sdh4dnbv" path="res://prefabs/player.tscn" id="2_mp8n3"]
+[ext_resource type="Texture2D" uid="uid://dwgcvyniq1f6x" path="res://assets/ground/ground_texture_long_6.png" id="3_3pfvh"]
 [ext_resource type="Script" path="res://prefabs/linear_clock_motion.gd" id="3_4fo5w"]
 [ext_resource type="PackedScene" uid="uid://dvt0bbp3klwmf" path="res://prefabs/level_title.tscn" id="4_tmolp"]
 [ext_resource type="PackedScene" uid="uid://bx5uh0pwe5que" path="res://prefabs/random_color_bg.tscn" id="5_tualr"]
+[ext_resource type="Texture2D" uid="uid://c4mf8e7m7hyp3" path="res://assets/ground/ground_texture_moving.png" id="5_txr3p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmpwu"]
 size = Vector2(445, 39)
@@ -35,9 +37,18 @@ position = Vector2(-11, 492)
 collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="Planks/StaticPlank1"]
+visible = false
 offset_right = 123.0
 offset_bottom = 40.0
 scale = Vector2(3.6, 1)
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="Planks/StaticPlank1"]
+offset_right = 444.0
+offset_bottom = 40.0
+texture = ExtResource("3_3pfvh")
+region_rect = Rect2(0, 0, 90, 45)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/StaticPlank1"]
 position = Vector2(222.5, 19.5)
@@ -48,9 +59,18 @@ position = Vector2(798, 145)
 collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="Planks/StaticPlank2"]
+visible = false
 offset_right = 123.0
 offset_bottom = 40.0
 scale = Vector2(3.6, 1)
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="Planks/StaticPlank2"]
+offset_right = 444.0
+offset_bottom = 40.0
+texture = ExtResource("3_3pfvh")
+region_rect = Rect2(0, 0, 90, 45)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/StaticPlank2"]
 position = Vector2(222.5, 19.5)
@@ -65,9 +85,18 @@ finalPosition = Vector2(434, 318)
 clockObject = NodePath("../../Clock")
 
 [node name="ColorRect" type="ColorRect" parent="Planks/MovingPlank1"]
+visible = false
 offset_right = 123.0
 offset_bottom = 40.0
 scale = Vector2(1.48, 1)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Planks/MovingPlank1"]
+offset_right = 178.0
+offset_bottom = 40.0
+texture = ExtResource("5_txr3p")
+patch_margin_top = 30
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/MovingPlank1"]
 position = Vector2(91, 19.5)
@@ -82,9 +111,18 @@ finalPosition = Vector2(616, 320)
 clockObject = NodePath("../../Clock")
 
 [node name="ColorRect" type="ColorRect" parent="Planks/MovingPlank2"]
+visible = false
 offset_right = 123.0
 offset_bottom = 40.0
 scale = Vector2(1.48, 1)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Planks/MovingPlank2"]
+offset_right = 178.0
+offset_bottom = 40.0
+texture = ExtResource("5_txr3p")
+patch_margin_top = 30
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Planks/MovingPlank2"]
 position = Vector2(91, 19.5)

@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6xnhyqgfqoe3"]
+
+[ext_resource type="Texture2D" uid="uid://dwgcvyniq1f6x" path="res://assets/ground/ground_texture_long_6.png" id="1_qt1yo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tdtf"]
+size = Vector2(336, 39.5794)
+
+[node name="StaticPlank1" type="StaticBody2D"]
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.5
+offset_top = -20.0
+offset_right = 61.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.72, 1)
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -20.0
+offset_right = 168.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_qt1yo")
+region_rect = Rect2(0, 0, 90, 45)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1tdtf")
